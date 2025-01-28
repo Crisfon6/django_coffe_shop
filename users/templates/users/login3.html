@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %}
+<link rel="stylesheet" href="{% static 'users/css/styles.css' %}" />
+
+{% block  content %}
+  <section class="grid lg:grid-cols-2 h-[calc(100vh-4rem)]">
+    <div class="flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <div class="w-full max-w-lg">
+        <h1 class="text-2xl font-bold text-center mb-8 sm:text-3xl">Login</h1>
+        <!--form method="post" class="space-y-4">          
+            {% csrf_token %}
+            {{ form|crispy }}
+        </form-->
+        <form method="post">
+          {% csrf_token %}  <!-- This will render the password field -->
+          {% crispy form %}  <!-- This will render the form with crispy forms styling -->
+          
+          <!-- Optionally, manually render the Submit button (if needed): -->
+          
+      </form>
+      </div>
+    </div>
+    <div class="relative hidden lg:block">
+      <img
+        src="{% static 'users/images/coffee.png' %}"
+        alt="Coffee"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+    </div>
+  </section>
+  {% endblock content %}
+  
