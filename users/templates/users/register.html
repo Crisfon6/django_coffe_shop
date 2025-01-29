@@ -1,0 +1,45 @@
+{% extends "base.html" %} 
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'users/css/styles.css' %}" />
+
+{% block  content %}
+  <section class="grid lg:grid-cols-2 h-[calc(100vh-4rem)]">
+    <div class="flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <div class="w-full max-w-lg">
+        <h1 class="text-2xl font-bold text-center mb-8 sm:text-3xl">Register</h1>
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="p-4 {% if message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %} rounded">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="post" class="space-y-4">
+          {% csrf_token %}  
+          {% crispy form 'tailwind' %}
+
+          
+          
+       
+      </form>
+      <p class="text-center text-sm text-gray-500 mt-4">
+        You already have an account?
+        <a class="underline" href="{% url "login" %}">Sign In</a>
+    </p>
+      </div>
+    </div>
+    <div class="relative hidden lg:block">
+      <img
+        src="{% static 'users/images/coffee.png' %}"
+        alt="Coffee"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+    </div>
+  </section>
+  {% endblock content %}
+  
