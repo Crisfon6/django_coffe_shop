@@ -1,10 +1,11 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import OrderProductForm
-from .models import Order
+from .models import Order, OrderProduct
 
 # Create your views here.
 class MyOrderView(LoginRequiredMixin, DetailView):
@@ -29,4 +30,10 @@ class CreateOrderProductView(LoginRequiredMixin, CreateView):
         form.quantity = 1
         form.save()
         return super().form_valid(form)
+
+class DeleteOrderProductView(LoginRequiredMixin,DeleteView):
+    model = OrderProduct
+    success_url = reverse_lazy('my_orders')
     
+    def get_queryset(self):
+        return OrderProduct.objects.filter(order__user=self.request.user)

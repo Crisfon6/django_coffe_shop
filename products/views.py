@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic import DetailView
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import viewsets, permissions
 
 from products.models import Product 
 from .forms import ProductForm,ProductImage
@@ -44,7 +45,12 @@ class ProductListAPI(APIView):
     def get(self, request):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data)    
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 class ProductDetailView(DetailView):
     model = Product
