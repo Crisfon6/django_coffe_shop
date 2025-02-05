@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %}
+
+<link rel="stylesheet" href="{% static 'users/css/styles.css' %}" />
+{% block content %}
+
+<section class="overflow-hidden rounded-lg shadow-2xl md:grid md:grid-cols-3">
+  <img
+    alt=""
+    src="https://images.unsplash.com/photo-1611510338559-2f463335092c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80"
+    class="h-32 w-full object-cover md:h-full"
+  />
+
+  <div class="p-4 text-center sm:p-6 md:col-span-2 lg:p-8">
+    <p class="text-sm font-semibold uppercase tracking-widest">
+      Run with the pack
+    </p>
+
+    <h2 class="mt-6 font-black uppercase">
+      <span class="text-4xl font-black sm:text-5xl lg:text-6xl">
+        Get 20% off
+      </span>
+
+      <span class="mt-2 block text-sm">On your next order over $50</span>
+    </h2>
+
+  
+
+    <form method="post">
+      {% comment "" %} {% crispy form %} {% endcomment %} {% csrf_token %}
+      {{form.as_p}}
+      <!-- Base -->
+
+      <button
+        class="group relative inline-block focus:ring-3 focus:outline-hidden w-full"
+        type="submit"
+      >
+        <span
+          class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"
+        ></span>
+
+        <span
+          class="relative inline-block border-2 border-current px-8 py-3 text-sm font-bold tracking-widest text-black uppercase w-full"
+        >
+          ADD
+        </span>
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock content %}

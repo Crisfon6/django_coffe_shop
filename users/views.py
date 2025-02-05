@@ -1,14 +1,22 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
+from django.http import HttpRequest
+from django.http.response import HttpResponse as HttpResponse
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login
+from django.contrib.auth.decorators import user_passes_test
 
 from users.forms import CustomLoginForm,CustomUserCreationForm
+
 class CustomLoginView(LoginView):
+    def dispatch(self, request: HttpRequest, *args: reverse_lazy, **kwargs: reverse_lazy) -> HttpResponse:
+        if request.user.is_authenticated:
+            return redirect('list_products')
+        return super().dispatch(request, *args, **kwargs)
     template_name= 'users/login3.html'
     authentication_form = CustomLoginForm
 
