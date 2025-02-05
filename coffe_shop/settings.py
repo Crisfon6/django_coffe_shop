@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     'crispy_forms',
     'crispy_tailwind',
+    'rest_framework',
     
     'products',
     'users',
@@ -86,8 +87,13 @@ WSGI_APPLICATION = 'coffe_shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'coffe_shop',        # Database name
+        'USER': 'admin',             # PostgreSQL username
+        'PASSWORD': 'admin',         # PostgreSQL password
+        'HOST': 'localhost',         # Use 'db' if Django is in Docker
+        'PORT': '5433',
+        
     }
 }
 
@@ -152,3 +158,14 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 
 LOGIN_REDIRECT_URL = "list_products"
 LOGOUT_REDIRECT_URL= "login"
+LOGIN_URL= "login"
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
