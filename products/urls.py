@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path
 
-from products.views import ProductFormImageView, ProductFormView,ListProducts
+from products.views import ProductFormImageView, ProductFormView,ListProducts, ProductListAPI
 
 
 urlpatterns = [
-    path('agregar/', ProductFormView.as_view(), name="add_product"),
-     path('agregar2/', ProductFormImageView.as_view(), name="add_product2"),
+    path('add/', ProductFormView.as_view(), name="create_product"),
+     #path('add2/', ProductFormImageView.as_view(), name="add_product2"),
+    path('api/', ProductListAPI.as_view(), name="list_product_api"),
     path('', ListProducts.as_view(), name='list_products'),
 ]
