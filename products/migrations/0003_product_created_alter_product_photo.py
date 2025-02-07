@@ -7,19 +7,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0002_alter_product_photo'),
+        ("products", "0002_alter_product_photo"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='created',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now, verbose_name='creado'),
+            model_name="product",
+            name="created",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                default=django.utils.timezone.now,
+                verbose_name="creado",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='product',
-            name='photo',
-            field=models.ImageField(blank=True, null=True, upload_to='products/photos/', verbose_name='foto'),
+            model_name="product",
+            name="photo",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="products/photos/", verbose_name="foto"
+            ),
         ),
     ]

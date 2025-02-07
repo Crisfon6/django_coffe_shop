@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Submit,HTML,ButtonHolder
+from crispy_forms.layout import Layout, Field, Submit, HTML, ButtonHolder
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -25,12 +25,13 @@ class CustomLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = 'post'  # Ensure the form method is POST
+        self.helper.form_method = "post"  # Ensure the form method is POST
         self.helper.layout = Layout(
             Field("username", css_class="mb-4"),
             Field("password", css_class="mb-4"),
             ButtonHolder(
-                HTML("""
+                HTML(
+                    """
                   <button class="group relative inline-block focus:outline-none focus:ring w-full" href="#">
                     <span
                       class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 w-full"
@@ -43,9 +44,11 @@ class CustomLoginForm(AuthenticationForm):
                     </span>
                   </button>
 
-                     """),
+                     """
+                ),
             ),
         )
+
 
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(
@@ -76,13 +79,14 @@ class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = 'post'
+        self.helper.form_method = "post"
         self.helper.layout = Layout(
             Field("username", css_class="mb-4"),
             Field("password1", css_class="mb-4"),
             Field("password2", css_class="mb-4"),
             ButtonHolder(
-                HTML("""
+                HTML(
+                    """
                     <button type="submit" class="group relative inline-block focus:outline-none focus:ring w-full">
                         <span
                             class="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 w-full"
@@ -94,6 +98,7 @@ class CustomUserCreationForm(UserCreationForm):
                             Register
                         </span>
                     </button>
-                """),
+                """
+                ),
             ),
         )

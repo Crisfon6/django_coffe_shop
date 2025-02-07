@@ -10,20 +10,25 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login
 from django.contrib.auth.decorators import user_passes_test
 
-from users.forms import CustomLoginForm,CustomUserCreationForm
+from users.forms import CustomLoginForm, CustomUserCreationForm
+
 
 class CustomLoginView(LoginView):
-    def dispatch(self, request: HttpRequest, *args: reverse_lazy, **kwargs: reverse_lazy) -> HttpResponse:
+    def dispatch(
+        self, request: HttpRequest, *args: reverse_lazy, **kwargs: reverse_lazy
+    ) -> HttpResponse:
         if request.user.is_authenticated:
-            return redirect('list_products')
+            return redirect("list_products")
         return super().dispatch(request, *args, **kwargs)
-    template_name= 'users/login3.html'
+
+    template_name = "users/login3.html"
     authentication_form = CustomLoginForm
 
-class RegisterView(SuccessMessageMixin,CreateView):
+
+class RegisterView(SuccessMessageMixin, CreateView):
     form_class = CustomUserCreationForm
-    template_name = 'users/register.html'
-    success_url = reverse_lazy('login')
+    template_name = "users/register.html"
+    success_url = reverse_lazy("login")
     success_message = "Registration successful! Please login"
 
     def form_invalid(self, form):
