@@ -4,13 +4,17 @@ This is a Django-based web application for managing a coffee shop. The applicati
 
 ## Table of Contents
 
-- [Features](#features)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Application](#running-the-application)
-- [Running Tests](#running-tests)
-- [Static Files](#static-files)
-- [License](#license)
+- [Coffee Shop](#coffee-shop)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Running the Application](#running-the-application)
+  - [Running Tests](#running-tests)
+  - [Static Files](#static-files)
+    - [Admin Static Files](#admin-static-files)
+    - [License for Admin Icons](#license-for-admin-icons)
+  - [License](#license)
 
 ## Features
 
@@ -59,14 +63,8 @@ This is a Django-based web application for managing a coffee shop. The applicati
 1. Create a `.env` file in the root directory of the project and add the following environment variables:
 
     ```dotenv
-    DJANGO_DB_ENGINE="django.db.backends.mysql"
-    DJANGO_DB_NAME="crisnciv_coffe_shop_db"
-    DJANGO_DB_USER="crisnciv_coffe_shop_user"
-    DJANGO_DB_PASSWORD="]un$xEu$v)9K"
-    DJANGO_DB_HOST="127.0.0.1"
-    DJANGO_DB_PORT="5522"
-    DJANGO_DB_URL="mysql://crisnciv_coffe_shop_user:]un$xEu$v)9K@127.0.0.1:5522/crisnciv_coffe_shop_db"
-    DJANGO_TEST_DB_URL="mysql://crisnciv_coffe_shop_user:]un$xEu$v)9K@127.0.0.1:5522/crisnciv_test_coffe_shop_db"
+    DJANGO_DB_URL=""
+    DJANGO_TEST_DB_URL=""
     ```
 
 2. Update the `settings.py` file to read the environment variables:
