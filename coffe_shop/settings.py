@@ -13,10 +13,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 import configparser
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -87,17 +89,12 @@ WSGI_APPLICATION = 'coffe_shop.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Load database configuration from db_config.ini
-config = configparser.ConfigParser()
-config.read(os.path.join(BASE_DIR, 'db_config.ini'))
+# config = configparser.ConfigParser()
+# config.read(os.path.join(BASE_DIR, 'db_config.ini'))
+
 DATABASES = {
-    'default': {
-        'ENGINE': config['database']['ENGINE'],
-        'NAME': config['database']['NAME'],
-        'USER': config['database']['USER'],
-        'PASSWORD': config['database']['PASSWORD'],
-        'HOST': config['database']['HOST'],
-        'PORT': config['database']['PORT'],
-    }
+    'default': env.db('DJANGO_DB_URL')        
+    
 }
 
 
