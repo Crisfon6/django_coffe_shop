@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+import configparser
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,15 +86,17 @@ WSGI_APPLICATION = 'coffe_shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# Load database configuration from db_config.ini
+config = configparser.ConfigParser()
+config.read(os.path.join(BASE_DIR, 'db_config.ini'))
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'coffe_shop',        # Database name
-        'USER': 'admin',             # PostgreSQL username
-        'PASSWORD': 'admin',         # PostgreSQL password
-        'HOST': 'localhost',         # Use 'db' if Django is in Docker
-        'PORT': '5433',
-        
+        'ENGINE': config['database']['ENGINE'],
+        'NAME': config['database']['NAME'],
+        'USER': config['database']['USER'],
+        'PASSWORD': config['database']['PASSWORD'],
+        'HOST': config['database']['HOST'],
+        'PORT': config['database']['PORT'],
     }
 }
 
