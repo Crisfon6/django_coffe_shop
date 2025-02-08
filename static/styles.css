@@ -1,0 +1,11 @@
+#container-list-products {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+}
+
+#input-search {
+    margin: 10px 0;
+    width: 50%;
+}
