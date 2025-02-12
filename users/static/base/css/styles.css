@@ -1,0 +1,7 @@
+#menu-logout {
+    display: none;
+}
+
+#menu-logout.visible {
+    display: block;
+}
